@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import script from "next/script"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,6 +22,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
+
+        <script src="https://telegram.org/js/telegram-web-app.js"/>
       </body>
     </html>
   );
