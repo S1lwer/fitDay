@@ -70,46 +70,48 @@
         const minCalories = maxCalories - 400;
 
         const calcLunch = () => {
-            let random = generateRandom();
-            
-            lunch.food = food[random].name;
-            lunch.calories += parseFloat(food[random].calories);
-
-            lunch.salad = salads[random].name;
-            lunch.calories += parseFloat(salads[random].calories);
-
-            lunch.dessert = desserts[random].name;
-            lunch.calories += parseFloat(desserts[random].calories);
-
-            if( lunch.calories <= minCalories || 
-                lunch.calories >= maxCalories){
-                    lunch.calories = 0;
-                    calcLunch();
-            } else {
-                return;
-            };
+    let attempts = 0;
+    while (attempts < 100) {
+        let random = generateRandom();
+        lunch.food = food[random].name;
+        lunch.calories = parseFloat(food[random].calories);
+        lunch.salad = salads[random].name;
+        lunch.calories += parseFloat(salads[random].calories);
+        lunch.dessert = desserts[random].name;
+        lunch.calories += parseFloat(desserts[random].calories);
+        
+        if (lunch.calories > minCalories && lunch.calories < maxCalories) {
+            return;
         }
+        lunch.calories = 0;
+        attempts++;
+    }
+    // Fallback: взять первое
+    let random = 0;
+    // ... присвоить значения
+};
 
-        const calcDinner = () => {
-            let random = generateRandom();
-
-            dinner.food = food[random].name;
-            dinner.calories += parseFloat(food[random].calories);
-
-            dinner.salad = salads[random].name;
-            dinner.calories += parseFloat(salads[random].calories);
-
-            dinner.dessert = desserts[random].name;
-            dinner.calories += parseFloat(desserts[random].calories);
-
-            if( dinner.calories <= minCalories || 
-                dinner.calories >= maxCalories){
-                    dinner.calories = 0;
-                    calcDinner();
-            } else {
-                return;
-            };
+      const calcDinner = () => {
+    let attempts = 0;
+    while (attempts < 100) {
+        let random = generateRandom();
+        dinner.food = food[random].name;
+        dinner.calories = parseFloat(food[random].calories);
+        dinner.salad = salads[random].name;
+        dinner.calories += parseFloat(salads[random].calories);
+        dinner.dessert = desserts[random].name;
+        dinner.calories += parseFloat(desserts[random].calories);
+        
+        if (dinner.calories > minCalories && dinner.calories < maxCalories) {
+            return;
         }
+        dinner.calories = 0;
+        attempts++;
+    }
+    // Fallback: взять первое
+    let random = 0;
+    // ... присвоить значения
+};
 
         calcLunch();
         calcDinner();
